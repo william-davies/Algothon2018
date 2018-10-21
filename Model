@@ -17,3 +17,17 @@ financial_train_data = np.array(financial_data[:150])
 financial_val_data = np.array(sentiment_data[150:300])
 financial_test_data = np.array(sentiment_data[300:370])
 print(financial_data.size) # 370
+
+# this part really doesn't work
+model = keras.Sequential()
+
+model.compile(optimizer=tf.train.AdamOptimizer(), 
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+model.fit(sentiment_train_data,
+          financial_train_data,
+          epochs=40,
+          batch_size=512,
+          validation_data=(sentiment_val_data, financial_val_data),
+         )
