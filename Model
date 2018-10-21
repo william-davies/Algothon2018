@@ -1,0 +1,19 @@
+# get data on sentiment regarding Intel in news
+# there are only 370 data points of financial data so I have only used 370 data points of sentiment data to match
+# the data points temporally
+sentiment_data = quandl.get_table('IFT/NSA', ticker='INTC', paginate=True)['sentiment']
+# set up training, validation, test data
+sentiment_train_data = np.array(sentiment_data[:150])
+sentiment_val_data = np.array(sentiment_data[150:300])
+sentiment_test_data = np.array(sentiment_data[300:370])
+print(sentiment_data.size) # 4238
+
+
+
+# get data on Intel finances
+financial_data = quandl.get_table('SHARADAR/SF1', ticker='INTC', paginate=True)['price']
+# set up training, validation, test data
+financial_train_data = np.array(financial_data[:150])
+financial_val_data = np.array(sentiment_data[150:300])
+financial_test_data = np.array(sentiment_data[300:370])
+print(financial_data.size) # 370
